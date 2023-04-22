@@ -17,8 +17,8 @@ args = vars(ap.parse_args())
 # define the lower and upper boundaries of the "green"
 # ball in the HSV color space, then initialize the
 # list of tracked points
-greenLower = (0, 95, 121)
-greenUpper = (255, 255, 255)
+yellowLower = (19, 12, 199)
+yellowUpper = (68, 255, 255)
 pts = deque(maxlen=args["buffer"])
 # if a video path was not supplied, grab the reference
 # to the webcam
@@ -48,7 +48,7 @@ while True:
 	# construct a mask for the color "green", then perform
 	# a series of dilations and erosions to remove any small
 	# blobs left in the mask
-	mask = cv2.inRange(hsv, greenLower, greenUpper)
+	mask = cv2.inRange(hsv, yellowLower, yellowUpper)
 	# cv2.imshow("originalMask", mask)
 	
 	mask = cv2.erode(mask, None, iterations=2)
